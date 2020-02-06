@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content= "width=device-width, initial-scale=1">
+  <title>Andrew's FocalPoints</title>
+  <link rel="stylesheet" type="text/css" href="style.v2.2.css">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400i|Raleway" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="flexboxgrid.css" />
+</head>
+<body>
+  <section class="row middle-xs mobileBackground">
+    <div class="col-md-6 col-sm-12 center">
+      <div class="message">
+        <h1 id="greeting">greeting</h1>
+        <h2 id="currentDate"></h2>
+        <h2 id="currentTime"></h2>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12 center">
+      <div class="taskBox">
+        <div id="toDoListInput" class="row middle-xs">
+          <div class="col-xs-10 noPadding">
+            <input type="text" placeholder="Add new focal point" id="task" />
+          </div>
+          <div class="col-xs-2">
+            <button id="add"> <img class="addButton" src="img/AddButton.svg" /></button>
+          </div>
+        </div>
+        <h3>Today's focal points</h3>
+        <hr />
+        <ul id="toDoListTasks">
+        </ul>
+        <h3>Completed</h3>
+        <hr />
+        <ul id="toDoListComplete">
+        </ul>
+    </div>
+  </section>
+
+  <script>
+
+  //----Greeting Widget----//
+  function updateTime(){
+    var today = new Date();
+    var curHr = today.getHours();
+    var theGreeting
+
+    if (curHr < 12) {
+      theGreeting = "Good Morning, Andrew.";
+    } else if (curHr <18) {
+      theGreeting = "Good Afternoon, Andrew.";
+    } else {
+      theGreeting = "Good Evening, Andrew.";
+    }
+    document.getElementById('greeting').innerHTML = theGreeting;
+  }
+  setInterval(updateTime , 10);
+  </script>
+
+  <script>
+
+  //----Clock Widget----//
+
+  function updateTime(){
+    var time = new Date();
+    var hours = time.getHours();
+    var minutes = time.getMinutes();
+    var seconds = time.getSeconds();
+    if (minutes < 10) {
+      minutes = "0" + minutes
+    };
+    if (seconds < 10) {
+      seconds = "0" + seconds
+    };
+    var timeType = hours + ":" + minutes + ":" + seconds + " ";
+    if (hours > 12) {
+      timeType = hours - 12 + ":" + minutes + ":" + seconds + " ";
+    }
+    if (hours <= 11) {
+      timeType += "AM";
+    } else {
+      timeType += "PM";
+    };
+
+    document.getElementById('currentTime').innerHTML = timeType;
+  }
+  setInterval(updateTime , 10);
+
+  </script>
+
+  <script>
+
+  //----Date widget----//
+
+  function updateTime(){
+    var date = new Date();
+    var day = date.getDay();
+    var month = date.getMonth();
+    var dateNum = date.getDate();
+    var year = date.getFullYear();
+    var dayName = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday"]
+    if (day < 7){
+      day = dayName[day]
+    }
+    var monthName = ["January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" , "October" , "November" , "December"]
+    if (month < 12){
+      month = monthName[month]
+    }
+
+
+    var fullDate = "It's " + day + "," + " " + month + " " + dateNum + ", " + year
+    document.getElementById('currentDate').innerHTML = fullDate
+  }
+  setInterval (updateTime , 10);
+
+
+
+
+  </script>
+
+
+  <script>
+
+  //----ToDoList---//
+
+  //Check local storage for data, otherwise create array for data
+  var data = (localStorage.getItem('toDoList')) ? JSON.parse(localStorage.getItem('toDoList')):{
+  todo: [],
+  completed: []
+};
+
+  //Sets variable for button images
+  var completeImg = '<img class="taskButton" src="img/taskButton.svg" />'
+  var removeImg = '<img class="removeButton" src="img/removeButton.svg" />'
+
+
+
+  renderToDoList();
+
+
+//Sets click listener for the add item button
+  document.getElementById('add').addEventListener('click', function(){
+    var value = document.getElementById('task').value;
+    if (value) {
+      addItem(value);
+    }
+  });
+
+
+//Sets enter listener for the add item button
+  document.getElementById('task').addEventListener('keydown', function (e) {
+    var value = this.value;
+    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value) {
+      addItem(value);
+    }
+  });
+
+  function addItem(value){
+    addItemTodo(value);
+    document.getElementById('task').value = '';
+    data.todo.push(value);
+    dataObjectUpdated();
+  }
+
+  function renderToDoList() {
+    if (!data.todo.length && !data.completed.length) return;
+
+    for (var i = 0; i < data.todo.length; i++) {
+      var value = data.todo[i];
+      addItemTodo(value);
+    }
+
+    for (var j = 0; j < data.completed.length; j++) {
+      var value = data.completed[j];
+      addItemTodo(value, true);
+    }
+}
+
+  function dataObjectUpdated() {
+    localStorage.setItem('toDoList', JSON.stringify(data));
+}
+
+  function removeItem(){
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+    var id = parent.id;
+    var value = item.innerText;
+
+    if (id === 'toDoListTasks') {
+      data.todo.splice(data.todo.indexOf(value), 1);
+    } else {
+      data.completed.splice(data.completed.indexOf(value), 1);
+    }
+
+    dataObjectUpdated();
+
+    parent.removeChild(item);
+  };
+
+  function completeItem(){
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+    var id = parent.id;
+    var oldValue = item.innerText;
+    value = oldValue.replace(/(\r\n\t|\n|\r\t)/gm,"");
+
+    console.log(value);
+
+    if (id === 'toDoListTasks') {
+      data.todo.splice(data.todo.indexOf(value), 1);
+      data.completed.push(value);
+    } else {
+      data.completed.splice(data.completed.indexOf(value), 1);
+      data.todo.push(value);
+    }
+    dataObjectUpdated();
+
+    var target = (id === 'toDoListTasks') ? document.getElementById('toDoListComplete'):document.getElementById('toDoListTasks');
+
+    parent.removeChild(item);
+    target.insertBefore(item, target.childNodes[0]);
+  };
+
+  function addItemTodo(task , completed){
+
+    var list = (completed) ?document.getElementById('toDoListComplete'):document.getElementById('toDoListTasks');
+
+    var item = document.createElement('li');
+    var item2 = document.createElement('p');
+    item2.innerText = task;
+
+    var buttons = document.createElement('div');
+    buttons.classList.add('buttons');
+
+    var remove = document.createElement('button');
+    remove.classList.add('buttons')
+    remove.innerHTML = removeImg;
+
+    //Add click event for remvoing items
+    remove.addEventListener('click' , removeItem);
+
+    var complete = document.createElement('button');
+    complete.classList.add('buttons')
+    complete.innerHTML = completeImg;
+
+    //Add click event for remvoing items
+    complete.addEventListener('click' , completeItem);
+
+    buttons.appendChild(complete);
+    buttons.appendChild(remove);
+    item.appendChild(item2);
+    item.appendChild(buttons);
+
+
+    list.appendChild(item);
+  };
+  </script>
+</body>
+</html>
