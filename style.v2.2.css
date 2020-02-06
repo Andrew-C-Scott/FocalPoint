@@ -1,0 +1,370 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html body {
+}
+
+.container{
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+section{
+  background: rgba(66, 83, 95, 1); /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(135deg, rgba(47, 56, 62, 1), rgba(10, 13, 15, 1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(135deg, rgba(47, 56, 62, 1), rgba(10, 13, 15, 1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(135deg, rgba(47, 56, 62, 1), rgba(10, 13, 15, 1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(135deg, rgba(47, 56, 62, 1), rgba(10, 13, 15, 1)); /* Standard syntax */
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.full{
+  height: 100%;
+  width: 100%;
+}
+.message {
+
+}
+
+.message h1{
+  font-family: 'Proxima Nova' , sans-serif;
+  font-size: 45px;
+  color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 900;
+}
+
+.message h2{
+  font-family: 'Proxima Nova' , sans-serif;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .message{
+    padding-top:  50px;
+    padding-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .message h1{
+    font-size: 35px;
+  }
+
+  .message h2{
+    font-size: 18px;
+  }
+
+  .center{
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.taskBox{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  min-height: 500px;
+  max-height: 700px;
+  background: rgba(66, 83, 95, 1); /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* Standard syntax */
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px rgba(0,0,0,0.2);
+  overflow: scroll;
+}
+
+@media (max-width: 480px) {
+  .taskBox{
+    overflow: auto;
+    width: 100%;
+    max-height: none;
+    padding: 20px 15px;
+    margin-bottom: 50px;
+    background: none;
+  }
+  .mobileBackground{
+    background: rgba(66, 83, 95, 1); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(135deg, rgba(66, 83, 95, 1), rgba(44, 56, 63, 1)); /* Standard syntax */
+  }
+}
+
+
+#toDoListInput {
+  height: 40px;
+  width: 100%;
+}
+
+.noPadding{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+#toDoListInput input {
+  background-color: rgba(66, 83, 95, 1);
+  height: 40px;
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  -webkit-apprearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  font-size: 16px;
+  text-indent: 20px;
+  color: white;
+  font-family: 'Proxima Nova' , sans-serif;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+
+#toDoListInput input::-webkit-input-placeholder {
+  color: rgba(89,111,126,1);
+  font-family: 'Proxima Nova' , sans-serif;
+  padding-top: 2px;
+}
+
+#add {
+  background: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.addButton{
+  max-height: 30px;
+  max-width: 30px;
+  min-width: 20px;
+  min-width: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.taskBox h3{
+  color: white;
+  font-family: 'Proxima Nova' , sans-serif;
+  font-size: 20px;
+  margin-top: 30px;
+  padding-left: 5px;
+}
+
+.taskBox hr{
+  width: 100%;
+  height: 1px;
+  background-color: rgba(89,111,126,1);
+  border: none;
+  margin-top: 10px;
+
+}
+#toDoListTasks {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#toDoListTasks li{
+  background-color: rgba(89, 111, 126, 1);
+  min-height: 40px;
+  border-radius: 20px;
+  font-family: 'Proxima Nova' , sans-serif;
+  box-shadow: none;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  list-style: none;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: auto;
+  height: auto;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+#toDoListTasks li:hover{
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+
+#toDoListTasks p{
+  max-width: 80%;
+  width: auto;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+#toDoListComplete{
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+#toDoListComplete li{
+  background-color: rgba(89, 111, 126, 1);
+  min-height: 40px;
+  border-radius: 20px;
+  font-family: 'Proxima Nova' , sans-serif;
+  box-shadow: none;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  list-style: none;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: auto;
+  height: auto;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+#toDoListComplete p{
+  max-width: 80%;
+  width: auto;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.buttons{
+  min-width: 22px;
+  min-height: 22px;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  width: 100px;
+  display: flex;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.buttons button {
+  height: 22px;
+  width: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  border-radius: 11;
+}
+
+.buttons img{
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+  display: flex;
+}
+
+#toDoListComplete .taskButton{
+  background-color: rgba(69, 121, 67, 1);
+  border-radius: 11px;
+}
+
+
+.bottomBar {
+  width: 100%;
+  /*background-color: rgba(128,128,128,0.60);*/
+  background-image: url(img/WidgetBackground.png);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 10%;
+  top:90%;
+  position: absolute;
+}
+.quote {
+  display: inline;
+  width: 600px;
+  overflow: scroll;
+  font-family: avenir;
+  color: white;
+  font-size: 1.5vh;
+  float: left;
+  margin-top: 3.4vh;
+  margin-left: 10px;
+  text-shadow: 0px 1px 15px #000000ff;
+
+
+}
